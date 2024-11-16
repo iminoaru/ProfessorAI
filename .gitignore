@@ -1,0 +1,11 @@
+.env
+.venv
+.idea/
+__pycache__/
+bun.lockb
+.DS_Store
+dev.ipynb
+elevan/
+.cache
+build/
+*.egg-info/

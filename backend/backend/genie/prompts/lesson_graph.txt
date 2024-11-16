@@ -1,0 +1,144 @@
+Your goal is to generate a valid output based on the input data.
+
+The task instructions are:
+To complete the task 'BuildKnowledgeGraphFromLessons', follow these steps:
+
+1. **Input Preparation**: Ensure you have an array of educational lessons. Each lesson should be an object containing a 'title', 'content', and 'tags'.
+
+2. **Parse Lessons**: Extract the 'title' from each lesson to use as nodes in the knowledge graph.
+
+3. **Identify Relationships**: Determine the prerequisite relationships between lessons. This can be done by analyzing the content and summary tags to see which lessons depend on the knowledge of others. Any lesson content that uses terms or concepts described in other lessons should be a dependent of those lessons and never come before. Pay close attention to building the right knowledge hierarchy and avoid redundant relationships.
+
+4. **Build Nodes**: Create nodes for the knowledge graph using the lesson titles.
+
+5. **Build Edges**: Create edges for the knowledge graph to represent the prerequisite relationships. Each edge should have a 'from' field (prerequisite lesson title) and a 'to' field (dependent lesson title).
+
+6. **Output Construction**: Construct the output JSON object with 'nodes' and 'edges' arrays representing the knowledge graph.
+
+7. **Validation**: Ensure the output matches the required schema with 'nodes' and 'edges' properly formatted.
+
+By following these steps, you will successfully build a knowledge graph from the provided educational lessons.
+
+The input that will be passed in the user message is a json following the schema:
+```json
+{
+  "properties": {
+    "lessons": {
+      "type": "array",
+      "description": "An array of educational lessons, each containing a title, content, and summary tags.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the lesson",
+            "examples": [
+              "Introduction to Algebra",
+              "Advanced Calculus"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "The content of the lesson",
+            "examples": [
+              "This lesson covers the basics of algebra...",
+              "In this lesson, we will explore..."
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "description": "A list of summary tags for the lesson",
+            "items": {
+              "type": "string",
+              "examples": [
+                "algebra",
+                "basics",
+                "math"
+              ]
+            }
+          }
+        },
+        "required": [
+          "title",
+          "content",
+          "tags"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "lessons"
+  ]
+}
+```
+
+As a genius expert, your task is to understand the content and provide the parsed objects in json that match the following json_schema:
+```json
+{
+  "properties": {
+    "knowledge_graph": {
+      "type": "object",
+      "description": "A knowledge graph representing the lessons and their prerequisite relationships",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "description": "The nodes in the knowledge graph, each representing a lesson",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "The title of the lesson",
+                "examples": [
+                  "Introduction to Algebra",
+                  "Advanced Calculus"
+                ]
+              }
+            },
+            "required": [
+              "title"
+            ]
+          }
+        },
+        "edges": {
+          "type": "array",
+          "description": "The edges in the knowledge graph, representing prerequisite relationships",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "The title of the prerequisite lesson",
+                "examples": [
+                  "Introduction to Algebra"
+                ]
+              },
+              "to": {
+                "type": "string",
+                "description": "The title of the dependent lesson",
+                "examples": [
+                  "Advanced Calculus"
+                ]
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ]
+          }
+        }
+      },
+      "required": [
+        "nodes",
+        "edges"
+      ]
+    }
+  },
+  "required": [
+    "knowledge_graph"
+  ]
+}
+```
+
+Make sure to return an instance of the JSON, not the schema itself. Only provide the complete JSON object and no other text.

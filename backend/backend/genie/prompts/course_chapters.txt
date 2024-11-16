@@ -1,0 +1,68 @@
+Your goal is to generate a valid output based on the input data.
+
+The task instructions are:
+Given an ordered list of content chunks about a specific topic, organize and group the chunk titles into chronological chapters. Each input chunk has a title and corresponding content. Create a logical chapter structure based on these guidelines:
+
+1) Group related chunks under the same chapter.
+2) Place chunks with more advanced content in later chapters.
+3) A chapter may consist of multiple chunks or a single chunk if its content is separate and important enough.
+4) For multi-chunk chapters, provide an appropriate chapter title that embodies the main theme.
+5) For single-chunk chapters, use the chunk title as the chapter title.
+6) Maintain a chronological order of chapters. Output an array of chapters, each including a chapter title and an array of chunk titles. Do not include chunk content in the output. Ensure all input chunk titles are accounted for and the structure reflects a logical, chronological progression of the topic.
+
+The input that will be passed in the user message is a json following the schema:
+```json
+{
+  "type": "object",
+  "properties": {
+    "content_chunks": {
+      "type": "array",
+      "description": "An ordered list of content chunks about a specific topic",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the content chunk"
+          },
+          "content": {
+            "type": "string",
+            "description": "The corresponding content of the chunk"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+As a genius expert, your task is to understand the content and provide the parsed objects in json that match the following json_schema:
+```json
+{
+  "type": "object",
+  "properties": {
+    "chapters": {
+      "type": "array",
+      "description": "The organized chapters containing grouped content chunk titles",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chapter_title": {
+            "type": "string",
+            "description": "The title of the chapter, either a custom title for multiple chunks or the chunk title for a single chunk"
+          },
+          "chunk_titles": {
+            "type": "array",
+            "description": "The titles of the content chunks included in this chapter",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Make sure to return an instance of the JSON, not the schema itself. Only provide the complete JSON object and no other text.
