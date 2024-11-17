@@ -77,7 +77,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <ProgressBar />
-      <Card className="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <Card className={`w-full max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden ${isLoading ? 'opacity-50 pointer-events-none' : ''}`}>
         <CardHeader className="bg-gray-50 border-b border-gray-200 p-6">
           <CardTitle className="text-2xl font-bold text-center text-gray-800">Upload</CardTitle>
           <CardDescription className="text-center text-gray-600 mt-2">Enter a link to learn from.</CardDescription>
@@ -155,6 +155,37 @@ export default function Home() {
           </Card>
         </div>
       </div>
+      {isLoading && (
+        <div 
+          className="fixed inset-0 z-50 transition-all duration-500 ease-in-out"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(8px)',
+          }}
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-full max-w-lg text-center opacity-0 animate-fade-in">
+              <h3 className="text-3xl font-light mb-4 text-white">
+                Processing Your Content
+              </h3>
+              <div className="space-y-2 text-lg">
+                <p className="text-white/60 text-sm mt-4">
+                  This might take a couple of minutes...
+                </p>
+              </div>
+              
+              {/* Loading indicator */}
+              <div className="mt-8">
+                <div className="inline-flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-blue-400/80 animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-blue-400/80 animate-pulse [animation-delay:0.2s]" />
+                  <div className="w-2 h-2 rounded-full bg-blue-400/80 animate-pulse [animation-delay:0.4s]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
