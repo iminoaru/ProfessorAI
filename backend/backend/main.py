@@ -33,9 +33,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://elevan.vercel.app",
-        "https://elevan-me.vercel.app",
-    ],  # Replace with your frontend domain
+        "https://professorai.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
