@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Literal, Optional
 
-SupportedModel = Literal["gpt-4o", "claude-3-5-sonnet"]
+SupportedModel = Literal["gpt-4o-mini"]
 
 
 class InstructionUnit(BaseModel):
@@ -9,7 +9,7 @@ class InstructionUnit(BaseModel):
         description="A name based on the provided content. It should be descriptive and informative."
     )
     summary: str = Field(
-        description="A detailed summary (within 15 lines) of the content capturing the key points, insights, takeaways and potential areas of confusion."
+        description="A detailed summary (at least 20 lines) of the content capturing the key points, insights, takeaways and potential areas of confusion."
     )
     instructions: str = Field(
         description="Depending on the complexity and quantity of the text, create instructions that will be used to guide a AI generation to create quizzes appropriately. This is very crucial."

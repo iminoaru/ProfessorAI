@@ -17,7 +17,7 @@ import openai
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 # REPLICATE_API_KEY = os.getenv("REPLICATE_API_KEY")
-SUPPORTED_MODELS: List[SupportedModel] = ["gpt-4o", "claude-3-5-sonnet"]
+SUPPORTED_MODELS: List[SupportedModel] = ["gpt-4o-mini"]
 MODEL_DEPLOYED = "gpt-4o-mini"  # "gpt-4o-2024-08-06"
 PROMPTS_DIR = os.path.join(os.path.dirname(__file__), "prompts")
 
@@ -137,7 +137,7 @@ async def gen_lessons_with_model(
 
 
 async def gen_tests_with_model(
-    chunks: List[ContentChunk], instructions: InstructionUnit
+    chunks: List[ContentChunk], instructions: InstructionUnit, max_tokens: int = 4000
 ):  # xxx add instructions as params {title, summary, instructions}
     with open(os.path.join(PROMPTS_DIR, "tests.txt")) as f:
         sys_prompt = f.read()
@@ -155,6 +155,7 @@ async def gen_tests_with_model(
                 },
             ],
             temperature=0,
+            max_tokens=max_tokens,
             seed=1337,
             response_format=TestItem,
         )

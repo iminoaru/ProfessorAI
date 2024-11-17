@@ -44,6 +44,6 @@ app.add_middleware(
 # Include the aggregated router
 
 
-@app.get("/")
+@app.get("/health")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Active"}

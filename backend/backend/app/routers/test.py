@@ -104,12 +104,20 @@ async def generate_tests(course_id: str, request: Request):
             .execute()
         )
         instruct = InstructionUnit.model_validate(_instruct_res.data[0])
-        # Generate tests
-        tests = await gen_tests_with_model(chunks, instruct)
+        # Generate tests with a max_tokens limit
+        tests = await gen_tests_with_model(
+            chunks, 
+            instruct,
+            max_tokens=4000  # Set a reasonable limit for completion tokens
+        )
 
-        # Insert the tests into the database
+        # Format and insert tests
         formatted_tests = []
         for chunk, test in zip(chunks, tests):
+            # Skip any None or invalid test results
+            if not test or not hasattr(test, 'questions'):
+                continue
+                
             for question in test.questions:
                 formatted_test = {
                     "course_id": course_id,
@@ -123,7 +131,14 @@ async def generate_tests(course_id: str, request: Request):
                 }
                 formatted_tests.append(formatted_test)
 
-        supabase.table("tests").insert(formatted_tests).execute()
+        if not formatted_tests:
+            return {"message": "No valid tests could be generated"}
+
+        # Insert in smaller batches if needed
+        batch_size = 50
+        for i in range(0, len(formatted_tests), batch_size):
+            batch = formatted_tests[i:i + batch_size]
+            supabase.table("tests").insert(batch).execute()
 
         return {"message": f"Generated {len(formatted_tests)} test questions"}
 
