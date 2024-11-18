@@ -115,44 +115,25 @@ export default function Home() {
               <CardDescription className="line-clamp-2">Britain buys semiconductor factory for defence purposes</CardDescription>
             </CardHeader>
           </Card> */}
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/9a146af3-91ee-4474-82e8-e4ebc30c028f")}>
+          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/ddaf4d75-17f6-40a2-b99c-61ae19034282")}>
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <FileText className="mr-2 flex-shrink-0" size={20} />
-                <span className="truncate">Clash Royale AI</span>
+                <span className="truncate">Core Java Quiz</span>
               </CardTitle>
-              <CardDescription className="line-clamp-2">Learn how to defend against high elixer troops using Mini P.E.K.K.A. and rage</CardDescription>
+              <CardDescription className="line-clamp-2">A quiz on Core Java to quickly brush up your knowledge.</CardDescription>
             </CardHeader>
           </Card>
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/eb42343c-43b6-4677-914f-c514e6187bc8")}>
+          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/789a8ba9-99e8-4ff6-8943-ca54675ab5fc")}>
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <Video className="mr-2 flex-shrink-0" size={20} />
-                <span className="truncate">Wormholes Explained - Breaking Spacetime</span>
+                <span className="truncate">5/3/1 Strength Program</span>
               </CardTitle>
-              <CardDescription className="line-clamp-2">Learn about wormholes from Kurzgesagt&apos;s wonderful video on YouTube.</CardDescription>
+              <CardDescription className="line-clamp-2">Learn about the 5/3/1 Strength Program from the creator of Stronglifts.</CardDescription>
             </CardHeader>
           </Card>
           
-          
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/441f3e37-c751-478c-a05e-81d24863fc7f")}>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Globe className="mr-2 flex-shrink-0" size={20} />
-                <span className="truncate">You and Your Research</span>
-              </CardTitle>
-              <CardDescription className="line-clamp-2">Learn from the wisdom of Richard Hamming, a talk on how to do research.</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300" onClick={() => router.push("/test/d5c6ba38-8bc4-4810-8248-f3c79b2b10c9")}>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Code className="mr-2 flex-shrink-0" size={20} />
-                <span className="truncate">nanogpt (gpt-2) by Karpathy</span>
-              </CardTitle>
-              <CardDescription className="line-clamp-2">Dive into the code of nanogpt, a minimal GPT-2  implementation in PyTorch by Andrej Karpathy.</CardDescription>
-            </CardHeader>
-          </Card>
         </div>
       </div>
       {isLoading && (
